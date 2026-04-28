@@ -1,5 +1,7 @@
 package com.uday.quizapp.dao;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -11,5 +13,6 @@ public interface QuestionDAO extends JpaRepository<Question, Integer>{
 	//JpaRepository asks for a 2 things
 	//Class with which you are working, type of primary key
 	
+	List<Question>findByCategory(String category);
 	
 }
