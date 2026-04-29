@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.uday.quizapp.model.Question;
 import com.uday.quizapp.model.QuestionWrapper;
+import com.uday.quizapp.model.Response;
 import com.uday.quizapp.service.QuizService;
 
 @RestController
@@ -29,6 +30,11 @@ public class QuizController {
 		//like we dont want to return the right answer
 		//we dont want to return the category, difficulty level
 		return quizService.getQuizQuestions(id);
+	}
+	
+	@PostMapping("submit/{id}")
+	public ResponseEntity<Integer> submitQuiz(@PathVariable Integer id, @RequestBody List<Response> responses){
+		return quizService.calculateResult(id, responses);
 	}
 	
 }

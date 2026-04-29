@@ -14,6 +14,7 @@ import com.uday.quizapp.dao.QuestionDAO;
 import com.uday.quizapp.model.Question;
 import com.uday.quizapp.model.QuestionWrapper;
 import com.uday.quizapp.model.Quiz;
+import com.uday.quizapp.model.Response;
 
 @Service
 public class QuizService {
@@ -52,5 +53,22 @@ public class QuizService {
 
 		
 		return new ResponseEntity<>(questionsForUser, HttpStatus.OK);
+	}
+
+	public ResponseEntity<Integer> calculateResult(Integer id, List<Response> responses) {
+		Quiz quiz=quizDao.findById(id).get();
+		List<Question> questions = quiz.getQuestions();
+		
+		int right=0;
+		int i=0;
+		for(Response response:responses) {
+			if(response.getResponse().equals(questions.get(i).getRightAnswer())) {
+				right++;
+			}
+				
+			i++;
+		}
+		
+		return new ResponseEntity<>(right, HttpStatus.OK);
 	}
 }
