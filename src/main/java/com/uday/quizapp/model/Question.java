@@ -11,13 +11,13 @@ public class Question {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonProperty("id")
+    @JsonProperty("id") 
     private Integer id;
 
     @Column(name = "question_title")
     @JsonProperty("questionTitle")
     private String questionTitle;
-
+  
     @JsonProperty("option1")
     private String option1;
     
